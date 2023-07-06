@@ -3,12 +3,62 @@
     {
       "id": 1,
       "checked": false,
-      "item": "Almonds, Unsalted, in the blue bag"
+      "item": "cream"
     },
     {
       "id": 2,
       "checked": false,
-      "item": "cream"
+      "item": "when I"
+    },
+    {
+      "id": 3,
+      "checked": false,
+      "item": "i"
+    },
+    {
+      "id": 4,
+      "checked": false,
+      "item": "met"
+    },
+    {
+      "id": 5,
+      "checked": false,
+      "item": "her"
+    },
+    {
+      "id": 6,
+      "checked": false,
+      "item": "on"
+    },
+    {
+      "id": 7,
+      "checked": false,
+      "item": "a"
+    },
+    {
+      "id": 8,
+      "checked": false,
+      "item": "monday"
+    },
+    {
+      "id": 9,
+      "checked": false,
+      "item": "evening"
+    },
+    {
+      "id": 10,
+      "checked": false,
+      "item": "she "
+    },
+    {
+      "id": 11,
+      "checked": false,
+      "item": "was"
+    },
+    {
+      "id": 12,
+      "checked": false,
+      "item": "standing"
     }
   ]
 }
