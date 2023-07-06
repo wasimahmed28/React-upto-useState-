@@ -5,13 +5,31 @@ import Content from './Content';
 import Footer from './Footer';
 import { useState, useEffect } from 'react';
 function App() {
-  const [items, setItems] = useState(JSON.parse(localStorage.getItem('shoppinglist'))||[]);
+  const API_URL= ' http://localhost:3500/items';
+  const [items, setItems] = useState([]);
   const [newItem, setNewItem] = useState('')
   const [search, setSearch] = useState('')
+  const [fetchErr, setFetchErr] = useState(null)
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    localStorage.getItem('shoppinglist', JSON.stringify(items));
-  }, [items])
+    const fetchItems = async ()=>{
+      try{
+        const response = await fetch(API_URL);
+        if(!response.ok) throw Error('Did not recieve expected Data')
+        const listItems = await response.json();
+        setItems(listItems);
+        setFetchErr(null);
+      }catch(err){
+        setFetchErr(err.message)
+      } finally{
+        setIsLoading(false);
+      }
+    }
+    setTimeout(()=>{
+    (async () => await fetchItems())();
+  }, 2000)
+},[])
 
 
 
@@ -48,12 +66,16 @@ function App() {
       <SearchItem 
       search={search}
       setSearch={setSearch}/>
-      <Content 
+      <main>
+        {isLoading && <p>Loading Items...</p>}
+        {fetchErr && <p style={{color:"red"}}>{`Error: ${fetchErr}`}</p>}
+      {!fetchErr && !isLoading && <Content 
        items={items.filter(item=>((item.item).toLowerCase()).includes(search.toLowerCase()))}
       handleDelete={handleDelete}
       handleCheck={handleCheck}
      
-      />
+      />}
+      </main>
       <Footer length={items.length}/>
     </div>
   );
